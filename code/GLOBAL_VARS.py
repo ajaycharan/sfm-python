@@ -7,7 +7,7 @@
 # 		course at the University of Pennsylvania, taught by Dr. Jianbo Shi.
 # ____________________________________________________________________________
 
-MAIN_SFM_DIR = '/Users/shreyasskandan/Desktop/Structure-From-Motion/'
+MAIN_SFM_DIR = 'C:/Users/Shreyas Skandan/Desktop/StructureFromMotion/'
 
 # Main folder to store all data
 DATA_DIR = MAIN_SFM_DIR + 'data/'
