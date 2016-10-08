@@ -17,6 +17,8 @@ CODE_DIR = MAIN_SFM_DIR + 'code/'
 CALIBRATION_FILE = DATA_DIR + 'calibration.txt'
 # Folder containing matched features across image frames
 FEATURES_DIR = DATA_DIR + 'correspondences/'
+# Folder containing the NUMPY file for image match matrices
+NUMPY_MATCH_MATRIX_DIR = DATA_DIR + 'correspondences/matchmatrices/'
 # Folder containing image frames (2D)
 INPUT_IMAGE_DIR = DATA_DIR + 'imgs/'
 # Folder to store all visualisation output
