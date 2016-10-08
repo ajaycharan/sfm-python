@@ -32,7 +32,17 @@ from GLOBAL_VARS import *
 # components) can be found at RGBData(1,:)
 # -------------------------------------------------------------------------
 
+matchFile_list = glob.glob(FEATURES_DIR + '*.txt')
 
-for correspondence_file in glob.glob(FEATURES_DIR + '*.txt'):
-	contents = open(correspondence_file).read()
-	print contents
+for correspondence_file in matchFile_matrix[:-1]:
+	filehandle = open(correspondence_file)
+	line1 = filehandle.readline()
+	print line1
+	features_inImage = [int(s) for s in line1.split() if s.isdigit()][0]
+	print features_inImage
+	# Initialize a matrix block for matches of the form (features x image_no)
+	x_Matches = np.zeros([features_inImage,len(matchFile_list)])
+	y_Matches = np.zeros([features_inImage,len(matchFile_list)])
+	pdb.set_trace()
+	#contents = open(correspondence_file).read()
+	#print contents
