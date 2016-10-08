@@ -23,4 +23,7 @@ INPUT_IMAGE_DIR = DATA_DIR + 'imgs/'
 OUTPUT_IMAGE_DIR = DATA_DIR + 'output/'
 # Folder to store any additional documentation
 ADDITIONAL_DOCUMENTATION_DIR = DATA_DIR + 'docs/'
+# Number of colour channels in image
+CLR_CHANNELS_COUNT = 3
+
 

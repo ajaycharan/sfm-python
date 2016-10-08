@@ -4,6 +4,7 @@ import glob
 import numpy as np
 #import cv2
 import pdb
+import re
 #import matplotlib.pyplot as pyplot
 from GLOBAL_VARS import *
 
@@ -34,15 +35,37 @@ from GLOBAL_VARS import *
 
 matchFile_list = glob.glob(FEATURES_DIR + '*.txt')
 
-for correspondence_file in matchFile_matrix[:-1]:
+def is_number(s):
+	try:
+		float(s)
+		return True
+	except:
+		return False
+
+imageNumber = 0
+for correspondence_file in matchFile_list[:-1]
 	filehandle = open(correspondence_file)
 	line1 = filehandle.readline()
-	print line1
+	#print line1
 	features_inImage = [int(s) for s in line1.split() if s.isdigit()][0]
-	print features_inImage
+	#print features_inImage
 	# Initialize a matrix block for matches of the form (features x image_no)
 	x_Matches = np.zeros([features_inImage,len(matchFile_list)])
 	y_Matches = np.zeros([features_inImage,len(matchFile_list)])
+	rgb_Matches = np.zeros([features_inImage,CLR_CHANNELS_COUNT])
+
+	# Iterate over each feature in the given image
+	for feature in range(features_inImage):
+		feature_line = [float(s) for s in filehandle.readline().split() if is_number(s)]
+		match_count = feature_line[0]
+		rgb_Matches[feature,:] = feature_line[1:4]
+		x_Matches[feature,imageNumber] = feature_line[4]
+		y_Matches[feature,imageNumber] = feature_line[5]
+		for match in range(2,match_count):
+			
+		pdb.set_trace()
+
+	imageNumber += 1
 	pdb.set_trace()
 	#contents = open(correspondence_file).read()
 	#print contents
