@@ -27,5 +27,7 @@ OUTPUT_IMAGE_DIR = DATA_DIR + 'output/'
 ADDITIONAL_DOCUMENTATION_DIR = DATA_DIR + 'docs/'
 # Number of colour channels in image
 CLR_CHANNELS_COUNT = 3
+# Minimum points for RANSAC operation
+MIN_RANSAC_POINTS = 8
 
 

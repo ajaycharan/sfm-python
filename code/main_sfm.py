@@ -23,17 +23,30 @@ except IOError:
 X_mask = XPTS>0
 Y_mask = YPTS>0
 assert(np.array_equal(X_mask,Y_mask)), "Error in (x,y) co-ordinate matches in preprocessing."
+
 # Create a point mask to identify feature correspondences
 point_mask = X_mask*1
 del X_mask,Y_mask
 
 for im1_idx in range(1,number_of_images):
 	for im2_idx in range(im1_idx+1,number_of_images+1):
+
 		print(im1_idx,im2_idx)
+
 		# Extract indices of valid features from both image frames
 		indices_image1 = np.nonzero(point_mask[:,im1_idx-1])
 		indices_image2 = np.nonzero(point_mask[:,im2_idx-1])
+
 		# Identify a set of initial feature correspondences,
 		# These will be refined using RANSAC.
-		common_indices = np.intersect1d(indices_image1,indices_image2)
+		common_indices = np.intersect1d(indices_image1,indices_image2).tolist()
+		if len(common_indices) < MIN_RANSAC_POINTS:
+			print("Error: Not enough feature correspondences for RANSAC between frame #%d and frame #%d",im1_idx,im2_idx)
+			continue
+
+		# Arrange feature point correspondences for both frames into two [x,y] matrices
+		Image1_PTS = np.transpose(np.array(XPTS[common_indices,im1_idx-1],YPTS[common_indices,im1_idx-1]))
+		Image2_PTS = np.transpsoe(np.array(XPTS[common_indices,im2_idx-1],YPTS[common_indices,im2_idx-1]))
+
+		#(F_temp,indices_RANSAC) = RANSAC_GET_INLIERS()
 		pdb.set_trace()
