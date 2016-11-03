@@ -6,9 +6,8 @@ import pdb
 import re
 import cv2
 import matplotlib.pyplot as plt
-from GLOBAL_VARS import *
-
-from SFM_UTILS import *
+from global_variables import *
+from sfm_utilities import get_inliers_RANSAC
 
 imageFile_list = glob.glob(INPUT_IMAGE_DIR + '*.bmp')
 number_of_images = len(imageFile_list)
