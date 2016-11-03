@@ -34,6 +34,7 @@ def EstimateFundamentalMatrix(input_points):
 	Output:
 	This method returns the fundamental matrix F
 	'''
+	pdb.set_trace()
 	x1_points = input_points[0:3,:]
 	x2_points = input_points[3:6,:]
 	num_points = x1_points.shape[1]
@@ -50,8 +51,11 @@ def EstimateFundamentalMatrix(input_points):
 	a23 = np.transpose(x2_pts[1,:])
 	a31 = np.transpose(x1_pts[0,:])
 	a32 = np.transpose(x1_pts[1,:])
-	a33 = np.ones([num_points,1])
+	a33 = np.ones([1,num_points])
+	pdb.set_trace()
 
 	A = np.array([[a11,a12,a13],[a21,a22,a23],[a31,a32,a33]])
 
 	(U,s,V) = np.linalg.svd(A,full_matrices=True)
+
+
