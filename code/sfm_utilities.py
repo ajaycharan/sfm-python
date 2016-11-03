@@ -8,6 +8,7 @@ import cv2
 import matplotlib.pyplot as plt
 import random
 from GLOBAL_VARS import *
+from MULT_VIEW_GEOM import *
 
 def normalise_homogeneous_pts(points_x):
 	'''
