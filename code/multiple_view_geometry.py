@@ -1,11 +1,9 @@
 import sys
 import os
-import glob
 import numpy as np
 import pdb
 import re
 import cv2
-import matplotlib.pyplot as plt
 import random
 
 def normalise_homogeneous_pts(points_x):
@@ -36,4 +34,24 @@ def EstimateFundamentalMatrix(input_points):
 	Output:
 	This method returns the fundamental matrix F
 	'''
-	
+	x1_points = input_points[0:3,:]
+	x2_points = input_points[3:6,:]
+	num_points = x1_points.shape[1]
+
+	(x1_pts,T1) = normalise_homogeneous_pts(x1_points)
+	(x2_pts,T2) = normalise_homogeneous_pts(x2_points)
+
+	# Building the A matrix for SVD
+	a11 = np.transpose(np.multiply(x2_pts[0,:],x1_pts[0,:]))
+	a12 = np.transpose(np.multiply(x2_pts[0,:],x1_pts[1,:]))
+	a13 = np.transpose(x2_pts[0,:])
+	a21 = np.transpose(np.multiply(x2_pts[1,:],x1_pts[0,:]))
+	a22 = np.transpose(np.multiply(x2_pts[1,:],x1_pts[1,:]))
+	a23 = np.transpose(x2_pts[1,:])
+	a31 = np.transpose(x1_pts[0,:])
+	a32 = np.transpose(x1_pts[1,:])
+	a33 = np.ones([num_points,1])
+
+	A = np.array([[a11,a12,a13],[a21,a22,a23],[a31,a32,a33]])
+
+	(U,s,V) = np.linalg.svd(A,full_matrices=True)
