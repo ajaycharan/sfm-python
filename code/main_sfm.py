@@ -40,13 +40,14 @@ for im1_idx in range(1,number_of_images):
 		# Identify a set of initial feature correspondences,
 		# These will be refined using RANSAC.
 		common_indices = np.intersect1d(indices_image1,indices_image2).tolist()
+		#pdb.set_trace()
 		if len(common_indices) < MIN_RANSAC_POINTS:
 			print("Error: Not enough feature correspondences for RANSAC between frame #%d and frame #%d",im1_idx,im2_idx)
 			continue
 
 		# Arrange feature point correspondences for both frames into two [x,y] matrices
-		Image1_PTS = np.transpose(np.array(XPTS[common_indices,im1_idx-1],YPTS[common_indices,im1_idx-1]))
-		Image2_PTS = np.transpsoe(np.array(XPTS[common_indices,im2_idx-1],YPTS[common_indices,im2_idx-1]))
+		Image1_PTS = np.transpose(np.array([XPTS[common_indices,im1_idx-1],YPTS[common_indices,im1_idx-1]]))
+		Image2_PTS = np.transpose(np.array([XPTS[common_indices,im2_idx-1],YPTS[common_indices,im2_idx-1]]))
 
 		#(F_temp,indices_RANSAC) = RANSAC_GET_INLIERS()
 		pdb.set_trace()
