@@ -17,13 +17,11 @@ def normalise_homogeneous_pts(points_x):
 	mean_yi = np.mean(points_x[1,:])
 	pXi = points_x[0,:] - mean_xi
 	pYi = points_x[1,:] - mean_yi
-	dist = np.sqrt(np.multiply(pXi,pXi)+np.multiply(pYi,pYi))
-	meandist = np.mean(dist)
+	meandist = np.mean(np.sqrt(np.multiply(pXi,pXi)+np.multiply(pYi,pYi)))
 	scale = np.sqrt(2)/meandist
 	T = np.array([[scale,0,-scale*mean_xi],[0,scale,-scale*mean_yi],[0,0,1]])
-	newpts = np.multiply(T,points_x)
-	pdb.set_trace()
-	return newpts
+	norm_homo_pts = np.dot(T,points_x)
+	return (norm_homo_pts,T)
 
 
 def get_inliers_RANSAC(points_x1,points_x2,ransac_threshold=0.00005):
