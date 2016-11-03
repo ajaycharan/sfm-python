@@ -51,5 +51,5 @@ for im1_idx in range(1,number_of_images):
 		Image1_PTS = np.transpose(np.array([XPTS[common_indices,im1_idx-1],YPTS[common_indices,im1_idx-1]]))
 		Image2_PTS = np.transpose(np.array([XPTS[common_indices,im2_idx-1],YPTS[common_indices,im2_idx-1]]))
 
-		(F_temp,indices_RANSAC) = get_inliers_RANSAC()
+		(F_temp,indices_RANSAC) = get_inliers_RANSAC(Image1_PTS,Image2_PTS)
 		pdb.set_trace()
