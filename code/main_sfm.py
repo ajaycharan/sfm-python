@@ -8,6 +8,8 @@ import cv2
 import matplotlib.pyplot as plt
 from GLOBAL_VARS import *
 
+from SFM_UTILS import *
+
 imageFile_list = glob.glob(INPUT_IMAGE_DIR + '*.bmp')
 number_of_images = len(imageFile_list)
 
@@ -49,5 +51,5 @@ for im1_idx in range(1,number_of_images):
 		Image1_PTS = np.transpose(np.array([XPTS[common_indices,im1_idx-1],YPTS[common_indices,im1_idx-1]]))
 		Image2_PTS = np.transpose(np.array([XPTS[common_indices,im2_idx-1],YPTS[common_indices,im2_idx-1]]))
 
-		#(F_temp,indices_RANSAC) = RANSAC_GET_INLIERS()
+		(F_temp,indices_RANSAC) = get_inliers_RANSAC()
 		pdb.set_trace()
